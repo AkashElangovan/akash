@@ -1,0 +1,490 @@
+/* Basic Reset & Font */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif; /* Windows 11 font with fallbacks */
+    color: #e0e0e0; /* Light gray text for dark theme */
+}
+
+/* Desktop Styles */
+#desktop {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1702731798357-22bd8ca4a484?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2luZG93cyUyMDExJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
+    background-color: #000000; /* Fallback solid black if image fails to load */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* Desktop Icons Container (for proper wrapping and alignment) */
+.desktop-icons-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    max-height: calc(100% - 70px);
+    align-content: flex-start;
+    gap: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 0.88em;
+    min-width: 80px;
+    max-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+    user-select: none;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    padding: 5px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.03);
+}
+
+/* Styles for ALL desktop icons (Font Awesome, custom PNGs) - bigger and equal size */
+.desktop-icon .icon-fa,
+.desktop-icon .icon-img-invert,
+.desktop-icon .icon-img-profile {
+    width: 64px;
+    height: 64px;
+    font-size: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+/* Specific color for Font Awesome icons, as custom PNGs have their own colors */
+.desktop-icon .icon-fa {
+    color: #ADD8E6;
+}
+
+/* No invert filter for PNGs as per request, they will appear black on dark backgrounds if source is black */
+.desktop-icon .icon-img-invert {
+    /* filter: invert(1); */
+}
+
+/* Specific styles for Akash's profile image (no invert, round shape) */
+.desktop-icon .icon-img-profile {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Ensure icon text wraps correctly under icons */
+.desktop-icon span {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+
+/* Taskbar Styles - Acrylic Effect */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: rgba(0, 50, 80, 0.7);
+    backdrop-filter: blur(15px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+/* Centered taskbar icons */
+.taskbar-group.taskbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.taskbar-group.taskbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+.taskbar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 14px;
+    text-decoration: none;
+    color: #e0e0e0;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border-radius: 6px;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(0, 120, 212, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Styles for ALL taskbar icons (Font Awesome, custom PNGs) - bigger and equal size */
+.taskbar-icon i,
+.taskbar-icon .taskbar-icon-img {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    object-fit: contain;
+    color: #e0e0e0;
+}
+
+
+/* System Tray Styles */
+.system-tray {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.system-tray .tray-icon {
+    margin-right: 12px;
+    font-size: 1.1em;
+    color: #b0b0b0;
+    opacity: 0.9;
+    cursor: default;
+}
+
+.system-tray .clickable-tray-icon {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.system-tray .clickable-tray-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.system-tray .tray-info {
+    font-size: 0.78em;
+    line-height: 1.3;
+    text-align: right;
+    white-space: nowrap;
+    margin-left: 8px;
+    color: #f0f0f0;
+}
+
+/* System Tray Popup Styles - Acrylic Effect */
+.popup {
+    position: absolute;
+    bottom: 58px;
+    background-color: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 8px;
+    padding: 15px;
+    color: #f0f0f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    min-width: 200px;
+    max-width: 300px;
+    display: none;
+    z-index: 110;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.popup p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+/* Start Panel Styles - Acrylic Effect */
+#start-panel {
+    position: fixed;
+    bottom: 58px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    width: 480px;
+    height: 600px;
+    max-height: calc(100% - 70px);
+    background-color: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 105;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#start-panel.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Animation for Start Panel & Popups */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation for Start Panel Header */
+#start-panel.show .start-panel-header {
+    animation: fadeInHeader 0.3s ease-out 0.1s forwards;
+}
+@keyframes fadeInHeader {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.start-panel-header {
+    padding: 15px 25px;
+    color: #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Updated: Styles for the "Recommended" link (Easter egg) */
+.recommended-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent (.start-panel-header) */
+    display: block; /* Make the whole link clickable area */
+    cursor: default; /* Change cursor back to default text cursor */
+    /* No hover effect to make it less obvious */
+}
+
+.recommended-link h3 {
+    margin: 0; /* Remove default margin from h3 */
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+
+.start-panel-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 20px 25px;
+    overflow-y: auto;
+}
+/* Custom scrollbar for start panel grid */
+.start-panel-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.start-panel-grid::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+.start-panel-grid::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.start-panel-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 0.8em;
+    min-width: 80px;
+    height: 90px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.start-panel-icon:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Styles for ALL start panel icons (Font Awesome, custom PNGs) - bigger and equal size */
+.start-panel-icon .icon-fa-small,
+.start-panel-icon .icon-img-invert-small,
+.start-panel-icon .icon-img-profile-small {
+    width: 56px;
+    height: 56px;
+    font-size: 56px;
+    margin-bottom: 5px;
+}
+
+/* Specific color for Font Awesome icons in start panel */
+.start-panel-icon .icon-fa-small {
+    color: #ADD8E6;
+}
+
+/* No invert filter for PNGs as per request */
+.start-panel-icon .icon-img-invert-small {
+    /* filter: invert(1); */
+}
+
+/* Specific styles for Akash's profile image in start panel (no invert, round shape) */
+.start-panel-icon .icon-img-profile-small {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.start-panel-footer {
+    padding: 15px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start-panel-footer .profile-link,
+.start-panel-footer .power-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 0.9em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.start-panel-footer .profile-link i,
+.start-panel-footer .power-button i {
+    font-size: 1.2em;
+    margin-right: 8px;
+    color: #ADD8E6;
+}
+
+.start-panel-footer .profile-link:hover,
+.start-panel-footer .power-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Fullscreen Shutdown GIF Overlay */
+#shutdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out;
+}
+
+#shutdown-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#shutdown-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .desktop-icons-container {
+        padding: 15px;
+        gap: 10px;
+    }
+    .desktop-icon {
+        font-size: 0.8em;
+        min-width: 70px;
+        max-width: 90px;
+    }
+    /* Apply size adjustments to all types of desktop icons for mobile */
+    .desktop-icon .icon-fa,
+    .desktop-icon .icon-img-invert,
+    .desktop-icon .icon-img-profile {
+        width: 50px;
+        height: 50px;
+        font-size: 50px;
+    }
+    #taskbar {
+        height: 40px;
+    }
+    .taskbar-icon {
+        padding: 0 8px;
+    }
+    /* Apply size adjustments to all types of taskbar icons for mobile */
+    .taskbar-icon i,
+    .taskbar-icon .taskbar-icon-img {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+    .system-tray .tray-icon {
+        margin-right: 5px;
+        font-size: 1em;
+    }
+    .system-tray .tray-info {
+        font-size: 0.68em;
+    }
+
+    #start-panel {
+        width: 90%;
+        max-width: 400px;
+        height: 70%;
+        max-height: calc(100% - 60px);
+    }
+    .start-panel-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        padding: 15px 20px;
+    }
+    .start-panel-icon {
+        min-width: 70px;
+        height: 75px;
+        font-size: 0.75em;
+    }
+    /* Apply size adjustments to all types of start panel icons for mobile */
+    .start-panel-icon .icon-fa-small,
+    .start-panel-icon .icon-img-invert-small,
+    .start-panel-icon .icon-img-profile-small {
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .popup {
+        bottom: 50px;
+        right: 5px;
+        min-width: 180px;
+        max-width: 250px;
+        font-size: 0.9em;
+    }
+}
