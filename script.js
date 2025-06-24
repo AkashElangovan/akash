@@ -161,6 +161,17 @@ powerButton.addEventListener('click', (event) => {
         window.location.href = 'about:blank'; // Redirect to a blank page
     }, 4000); // GIF duration is approx 4 seconds
 });
+// Log visitor IP and user agent using your Cloudflare Worker
+fetch("https://wispy-resonance-7604.akaxh.workers.dev", {
+  method: "POST"
+})
+  .then(res => res.json())
+  .then(data => {
+    console.log("✅ Visitor logged:", data);
+  })
+  .catch(err => {
+    console.error("❌ Failed to log visitor:", err);
+  });
 
 
 // --- Global Click Listener to Hide Popups/Panels ---
